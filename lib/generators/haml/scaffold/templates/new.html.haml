@@ -1,5 +1,7 @@
-%h1 New <%= singular_table_name %>
-
-= render 'form'
-
-= link_to 'Back', <%= index_helper %>_path
+.container
+  .row
+    %h1
+      = t(:new)
+      <%= singular_table_name %>
+    = render 'form'
+    = link_to t(:back), <%= index_helper %>_path

@@ -7,9 +7,18 @@
           %li= msg
 
 <% for attribute in attributes -%>
-  .field
-    = f.label :<%= attribute.name %>
-    = f.<%= attribute.field_type %> :<%= attribute.name %>
+  .row.<%= attribute.name %>
+    .input-field.col.s12
+<% if attribute.name.include?('tags') -%>
+      = f.label :<%= attribute.name %>
+      = f.hidden_field :<%= attribute.name %>
+      #chips_<%= attribute.name %>.chips.chips-autocomplete
+<% else -%>
+      = f.label :<%= attribute.name %>
+      = f.<%= attribute.field_type %> :<%= attribute.name %><%= attribute.field_type == :date_select ? ", class: 'datepicker'" : ''%>
 <% end -%>
-  .actions
-    = f.submit 'Save'
+<% end -%>
+  .actions.row
+    %button.btn-large.waves-effect.waves-light.m-top-1.right{type: 'submit'}
+      = t(:save)
+      %i.material-icons.right chevron_right
